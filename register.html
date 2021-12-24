@@ -19,26 +19,26 @@
 
             <div class="title"><span>Regjistrohu</span></div>
 
-            <form action="#">
+            <form action="#" name="myform" onsubmit="return validateform()">
 
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Emri*" required>
+                    <input type="text" placeholder="Emri*" name="name"   >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Mbiemri*" required>
+                    <input type="text" placeholder="Mbiemri*" name="mbiemri"  >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <input type="number" placeholder="Numri personal*" minlength="9" maxlength="10" required>
+                    <input type="number" placeholder="Numri personal*" name="nrpersonal" minlength="9" maxlength="10"  >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <select name="grupigjakut" id="grupigjakut" style="padding-left: 60px; color: gray;" required>
+                    <select name="grupigjakut" id="grupigjakut" style="padding-left: 60px; color: gray;" required  >
                         <option value="" disabled selected hidden>Grupi gjakut*</option>
                         <option value="0">0</option>
                         <option value="a">A</option>
@@ -49,7 +49,7 @@
 
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <select name="rhd" id="rhd" style="padding-left: 60px; color: gray;" required>
+                    <select name="rhd" id="rhd"  style="padding-left: 60px; color: gray;" required  >
                         <option value="" disabled selected hidden>Zgjedhni Rh(D) tuaj*</option>
                         <option value="+">+ (poz)</option>
                         <option value="-">- (ngt)</option>
@@ -59,22 +59,22 @@
 
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Fjalkalimi*" required>
+                    <input type="password" name="password" placeholder="Fjalkalimi*"  >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="number" placeholder="Numri i kontaktit*" required>
+                    <input type="number" name="nrkontakt" placeholder="Numri i kontaktit*"  >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="text" placeholder="Vendi*" required>
+                    <input type="text" placeholder="Vendi*" name="vendi" >
                 </div>
 
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="date" placeholder="Datëlindja*" style="color: gray;" required>
+                    <input type="date" placeholder="Datëlindja*" min="1930-01-01" max="2004-12-31" id="datelindja" style="color: gray;" >
                 </div>
 
                 <div class="row button">
@@ -95,7 +95,41 @@
             Made with ❤ by: Drilon Haliti & Ermal Cahanaj
         </div>
     </footer>
+<script>
+    function validateform(){
+       var name=document.myform.name.value;
+       var password=document.myform.password.value;
+       var mbiemri=document.myform.mbiemri.value;
+       var nrpersonal=document.myform.nrpersonal.value;
+       var nrkontakt=document.myform.nrkontakt.value;
+       var vendi=document.myform.name.value;
 
+if (name==null || name==""){
+ alert("Ju lutem plotesoni Emrin");
+return false;
+}
+if (mbiemri==null || mbiemri==""){
+ alert("Ju lutem plotesoni Mbiemrin");
+return false;
+}
+if (nrpersonal==null || nrpersonal==""){
+ alert("Ju lutem plotesoni Numrin Personal");
+return false;
+}
+if (nrkontakt==null || nrkontakt==""){
+ alert("Ju lutem plotesoni Numrin e Kontaktit");
+return false;
+}
+if (vendi==null || vendi==""){
+ alert("Ju lutem shenoni Qytetin");
+return false;
+}
+else if(password.length<6){
+ alert("Passwordi duhet te jete me shume se 6 karkatere");
+return false;
+}
+}
+</script>
 </body>
 
 </html>
