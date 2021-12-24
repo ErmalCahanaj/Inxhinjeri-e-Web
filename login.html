@@ -16,14 +16,14 @@
   <div class="container">
     <div class="wrapper">
       <div class="title"><span>Kyçu</span></div>
-      <form action="#">
+      <form action="#" name="myform" onsubmit="return validateform()">
         <div class="row">
           <i class="fas fa-user"></i>
-          <input type="text" placeholder="Numri personal*" required>
+          <input type="text" placeholder="Numri personal*" name="nrpersonal" >
         </div>
         <div class="row">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Fjalkalimi*" required>
+          <input type="password" name="password" placeholder="Fjalkalimi*">
         </div>
         <div class="pass"><a href="#">Keni harruar fjalkalimin?</a></div>
         <div class="row button">
@@ -41,7 +41,20 @@
       Made with ❤ by: Drilon Haliti & Ermal Cahanaj
     </div>
   </footer>
-
+<script>
+   function validateform(){
+   var nrpersonal=document.myform.nrpersonal.value;
+   var password=document.myform.password.value;
+    if (nrpersonal==null || nrpersonal==""){
+  alert("Ju lutem plotesoni Numrin Personal");
+    return false;
+    }
+   else if(password.length<6){
+   alert("Passwordi duhet te jete me shume se 6 karkatere");
+   return false;
+   }
+   }
+</script>
 </body>
 
 </html>
