@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+body{
+  background-image: url("img/background.jpg");
+
+}
+
+::selection{
+  background: rgba(188, 26, 26, 0.3);
+}
+
+.container-fluid{
+  margin-top: 20px ;
+}
+
+.card-header{
+  color: white;
+}
+
+.card{
+  margin-left: 20px;
+}
+
+.row-rhd{
+	position: relative;
+    vertical-align: middle;
+	margin: 0;
+    padding: 0;
+
+}
