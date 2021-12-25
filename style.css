@@ -91,6 +91,9 @@ body{
   color: #dc3545;
 }
 
+.doza input{
+  color: #dc3545;
+}
 .doza ::placeholder{
   color:#ff0019;
   opacity: 0.5;
@@ -116,4 +119,13 @@ body{
 #kerko{
   position: center;
   margin-top: 5%;
+}
+.btn-center{
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-submit{
+  width: 25%;
 }
