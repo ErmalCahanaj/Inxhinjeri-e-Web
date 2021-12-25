@@ -8,7 +8,7 @@
 body{
   background-image: url("img/background.jpg");
 }
-
+ 
 ::selection{
   background: rgba(188, 26, 26, 0.3);
 }
