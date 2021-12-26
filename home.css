@@ -28,13 +28,13 @@ body {
     margin-right: auto;
 }
 
-.butonat{
+.butonat {
     display: flex;
     justify-content: space-evenly;
 }
 
-.carousel-fade{
-    max-width:1000px;
+.carousel-fade {
+    max-width: 1000px;
     max-height: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -44,6 +44,15 @@ body {
     margin-bottom: 2%;
 }
 
-.carousel-inner{
+.carousel-inner {
     border-radius: 15px;
+}
+
+.bg-dark {
+    margin-top: -2%;
+}
+
+.nav-link {
+    color: white;
+    padding-top: 15%;
 }
