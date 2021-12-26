@@ -32,3 +32,27 @@ body {
     display: flex;
     justify-content: space-evenly;
   }
+.card-bio{
+  margin-top: 2%;
+}
+
+.card-bio img{
+  margin: 5% 0% 0% 0%;
+  max-width: 270px;
+  max-height: 340px;
+}
+
+.output-aboutus{
+  border: 3px white solid;
+  width: 85%;
+  background-color: #212529;
+  color: white;
+  font-size: 18px;
+  border-radius: 5%;
+  padding: 2%;
+}
+
+.aboutus-txt{
+  display: flex;
+  justify-content: center;
+}
