@@ -45,7 +45,7 @@
 		$dataa = mysqli_real_escape_string($con,$dataa);
 
 		$trn_date = date("Y-m-d H:i:s");
-        $query = "INSERT into `userss` (name, mbiemri, nrpersonal, grupigjakut, rhd, password, nrkontakt, vendi, dataa, trn_date) VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
+        $query = "INSERT into `userss` (name, mbiemri, nrpersonal, grupigjakut, rhd, password, nrkontakt, vendi, dataa, trn_date) VALUES ('$name','$mbiemri','$nrpersonal','$grupigjakut','$rhd','".md5($password)."', '$nrkontakt','$vendi','$dataa', '$trn_date')";
         $result = mysqli_query($con,$query);
         if($result){
             echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
@@ -58,7 +58,7 @@
       <div class="wrapper card1">
         <div class="title"><span>Regjistrohu</span></div>
 
-        <form action="#" name="myform" onsubmit="return validateform()">
+        <form method="POST" name="registration" >
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Emri*" name="name" />
@@ -145,7 +145,7 @@
           </div>
 
           <div class="row button">
-            <input type="submit" value="Regjistrohu" />
+            <input type="submit" name="submit" value="Regjistrohu" />
           </div>
 
           <div class="signup-link">
@@ -155,6 +155,7 @@
             Keni llogari? <a href="login.html">Kyçuni ketu</a>
           </div>
         </form>
+        <?php } ?>
       </div>
     </div>
 
@@ -163,7 +164,7 @@
         Made with ❤ by: Drilon Haliti & Ermal Cahanaj
       </div>
     </footer>
-    <?php } ?>
+   
     <script>
       function validateform() {
         var name = document.myform.name.value;
