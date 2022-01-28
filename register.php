@@ -93,9 +93,9 @@
               <option name="A" value="A">A</option>
               <option name="B" value="B">B</option>
               <option name="AB" value="AB">AB</option>
-            </select>"
-          </div>"
-"
+            </select>
+          </div>
+
           <div class="row">
             <i class="fas fa-user"></i>
             <select

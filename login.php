@@ -20,10 +20,33 @@
   </head>
 
   <body>
+  <?php
+	require('db.php');
+	session_start();
+    // If form submitted, insert values into the database.
+    if (isset($_POST['nrpersonal'])){
+		
+		$nrpersonal = stripslashes($_REQUEST['nrpersonal']); // removes backslashes
+		$nrpersonal = mysqli_real_escape_string($con,$nrpersonal); //escapes special characters in a string
+		$password = stripslashes($_REQUEST['password']);
+		$password = mysqli_real_escape_string($con,$password);
+		
+	//Checking is user existing in the database or not
+        $query = "SELECT * FROM `userss` WHERE nrpersonal='$nrpersonal' and password='".md5($password)."'"; //function uses the RSA Data Security
+		$result = mysqli_query($con,$query) or die(mysql_error());
+		$rows = mysqli_num_rows($result); //return the number of rows present in the result set
+        if($rows==1){
+			$_SESSION['nrpersonal'] = $nrpersonal;
+			header("Location: index.html"); // Redirect user to index.php
+            }else{
+				echo "<div class='form'><h3>nrpersonal/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
+				}
+    }else{
+?>
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Kyçu</span></div>
-        <form action="#" name="myform" onsubmit="return validateform()">
+        <form action="#" method="POST" name="myform" onsubmit="return validateform()">
           <div class="row">
             <i class="fas fa-user"></i>
             <input
@@ -47,6 +70,7 @@
             <a href="register2.html">Krijoni nje llogari si QTGJ</a>
           </div>
         </form>
+        <?php } ?>
       </div>
     </div>
 
