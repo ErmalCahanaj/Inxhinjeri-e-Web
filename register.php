@@ -24,16 +24,28 @@
   <?php
 	require_once('db.php');
     // If form submitted, insert values into the database.
-    if (isset($_REQUEST['username'])){
-		$username = stripslashes($_REQUEST['username']); // removes backslashes
-		$username = mysqli_real_escape_string($con,$username); //escapes special characters in a string
-		$email = stripslashes($_REQUEST['email']);
-		$email = mysqli_real_escape_string($con,$email);
-		$password = stripslashes($_REQUEST['password']);
+    if (isset($_REQUEST['name'])){
+		$name = stripslashes($_REQUEST['name']); // removes backslashes
+		$name = mysqli_real_escape_string($con,$name); //escapes special characters in a string
+    $mbiemri = stripslashes($_REQUEST['mbiemri']);
+		$mbiemri = mysqli_real_escape_string($con,$mbiemri);
+    $nrpersonal = stripslashes($_REQUEST['nrpersonal']);
+		$nrpersonal = mysqli_real_escape_string($con,$nrpersonal);
+    $grupigjakut = stripslashes($_REQUEST['grupigjakut']);
+		$grupigjakut = mysqli_real_escape_string($con,$grupigjakut);
+    $rhd = stripslashes($_REQUEST['rhd']);
+		$rhd = mysqli_real_escape_string($con,$rhd);
+    $password = stripslashes($_REQUEST['password']);
 		$password = mysqli_real_escape_string($con,$password);
+    $nrkontakt = stripslashes($_REQUEST['nrkontakt']);
+		$nrkontakt = mysqli_real_escape_string($con,$nrkontakt);
+    $vendi = stripslashes($_REQUEST['vendi']);
+		$vendi = mysqli_real_escape_string($con,$vendi);
+    $dataa = stripslashes($_REQUEST['dataa']);
+		$dataa = mysqli_real_escape_string($con,$dataa);
 
 		$trn_date = date("Y-m-d H:i:s");
-        $query = "INSERT into `userss` (username, password, email, trn_date) VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
+        $query = "INSERT into `userss` (name, mbiemri, nrpersonal, grupigjakut, rhd, password, nrkontakt, vendi, dataa, trn_date) VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
         $result = mysqli_query($con,$query);
         if($result){
             echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
@@ -77,13 +89,13 @@
               required
             >
               <option value="" disabled selected hidden>Grupi gjakut*</option>
-              <option value="0">0</option>
-              <option value="a">A</option>
-              <option value="a">B</option>
-              <option value="a">AB</option>
-            </select>
-          </div>
-
+              <option name="0" value="0">0</option>
+              <option name="A" value="A">A</option>
+              <option name="B" value="B">B</option>
+              <option name="AB" value="AB">AB</option>
+            </select>"
+          </div>"
+"
           <div class="row">
             <i class="fas fa-user"></i>
             <select
@@ -95,8 +107,8 @@
               <option value="" disabled selected hidden>
                 Zgjedhni Rh(D) tuaj*
               </option>
-              <option value="+">+ (poz)</option>
-              <option value="-">- (ngt)</option>
+              <option name="+" value="+">+ (poz)</option>
+              <option name="-" value="-">- (ngt)</option>
             </select>
           </div>
 
@@ -123,6 +135,7 @@
             <i class="fas fa-lock"></i>
             <input
               type="date"
+              name="dataa"
               placeholder="Datëlindja*"
               min="1930-01-01"
               max="2004-12-31"
