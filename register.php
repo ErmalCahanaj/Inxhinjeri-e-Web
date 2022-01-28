@@ -22,7 +22,7 @@
   <body>
 
   <?php
-	require_once('db.php');
+	require('db.php');
     // If form submitted, insert values into the database.
     if (isset($_REQUEST['name'])){
 		$name = stripslashes($_REQUEST['name']); // removes backslashes
