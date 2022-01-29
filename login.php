@@ -37,7 +37,7 @@
 		$rows = mysqli_num_rows($result); //return the number of rows present in the result set
         if($rows==1){
 			$_SESSION['nrpersonal'] = $nrpersonal;
-			header("Location: index.html"); // Redirect user to index.php
+			header("Location: index.php"); // Redirect user to index.php
             }else{
 				echo "<div class='form'><h3>nrpersonal/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
 				}
@@ -59,15 +59,17 @@
             <i class="fas fa-lock"></i>
             <input type="password" name="password" placeholder="Fjalkalimi*" />
           </div>
-          <div class="pass"><a href="#">Keni harruar fjalkalimin?</a></div>
           <div class="row button">
             <input type="submit" value="Kyçu" />
           </div>
           <div class="signup-link">
-            Nuk keni llogari? <a href="register.html">Krijoni nje llogari</a>
+            Nuk keni llogari? <a href="register.php">Krijoni nje llogari</a>
           </div>
           <div class="signup-link">
-            <a href="register2.html">Krijoni nje llogari si QTGJ</a>
+            <a href="register2.php">Krijoni nje llogari si QTGJ</a>
+          </div>
+          <div class="signup-link">
+            <a href="login-qtgj.php">Kyçuni si QTGJ</a>
           </div>
         </form>
         <?php } ?>

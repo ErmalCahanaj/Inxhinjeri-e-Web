@@ -39,7 +39,7 @@
         </form>
         <ul>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Dilni/Log out</a>
+            <a class="nav-link" href="login-qtgj.php">Dilni/Log out</a>
           </li>
         </ul>
       </div>
