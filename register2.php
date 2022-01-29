@@ -23,8 +23,30 @@
     <div class="container">
       <div class="wrapper card2">
         <div class="title"><span>Regjistrohu si QTGJ</span></div>
+        <?php
+        require('db1.php');
+    if (isset($_REQUEST['name'])){
+		$name = stripslashes($_REQUEST['name']); 
+		$name = mysqli_real_escape_string($con,$name);
+        $nrqendres = stripslashes($_REQUEST['nrqendres']);
+		$nrqendres = mysqli_real_escape_string($con,$nrqendres );
+        $password = stripslashes($_REQUEST['password']);
+		$password = mysqli_real_escape_string($con,$password);
+        $nrkontakt = stripslashes($_REQUEST['nrkontakt']);
+		$nrkontakt = mysqli_real_escape_string($con,$nrkontakt);
+        $vendi = stripslashes($_REQUEST['vendi']);
+		$vendi = mysqli_real_escape_string($con,$vendi);
+        $trn_date = date("Y-m-d H:i:s");
+        $query = "INSERT into `qtgj` (name,nrqendres,password, nrkontakt, vendi,trn_date)
+         VALUES ('$name','$nrqendres','".md5($password)."', '$nrkontakt','$vendi', '$trn_date')";
+        $result = mysqli_query($con,$query);
+        if($result){
+          header("Location: login-qtgj.php");
+        }
+    }else{
+?>
 
-        <form action="#" name="myform" onsubmit="return validateform()">
+        <form action="#" method="POST" name="myform" onsubmit="return validateform()">
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Emri i qendrës*" name="name" />
@@ -61,7 +83,7 @@
           </div>
 
           <div class="row button">
-            <input type="submit" value="Regjistrohu" />
+            <input type="submit" name="submit" value="Regjistrohu" />
           </div>
 
           <div class="signup-link">
@@ -71,6 +93,7 @@
             Keni llogari? <a href="login.html">Kyçuni ketu</a>
           </div>
         </form>
+        <?php } ?>
       </div>
     </div>
 
