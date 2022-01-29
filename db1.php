@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost:8080","root","","week10");
+$con = mysqli_connect("localhost:3306","root","","week10");
 // Check connection
 if (mysqli_connect_errno())
   {

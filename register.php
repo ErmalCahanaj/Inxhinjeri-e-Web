@@ -48,7 +48,7 @@
         $query = "INSERT into `userss` (name, mbiemri, nrpersonal, grupigjakut, rhd, password, nrkontakt, vendi, dataa, trn_date) VALUES ('$name','$mbiemri','$nrpersonal','$grupigjakut','$rhd','".md5($password)."', '$nrkontakt','$vendi','$dataa', '$trn_date')";
         $result = mysqli_query($con,$query);
         if($result){
-            echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
+          header("Location: login-qtgj.php");
         }
     }else{
 ?>
