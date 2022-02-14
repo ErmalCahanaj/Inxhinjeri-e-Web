@@ -1,3 +1,6 @@
+<?php 
+include_once 'loginControllerq.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,44 +18,15 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="login.css?v=<?php echo time(); ?>">
     <title>Login QTGJ</title>
   </head>
 
   <body>
-  <?php
-	require('db.php');
-	session_start();
-    // If form submitted, insert values into the database.
-    if (isset($_POST['nrqendres'])){
-		
-		$name = stripslashes($_REQUEST['name']); // removes backslashes
-		$name = mysqli_real_escape_string($con,$name); //escapes special characters in a string
-        $nrqendres = stripslashes($_REQUEST['nrqendres']); 
-		$nrqendres = mysqli_real_escape_string($con,$nrqendres); 
-        $password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con,$password);
-		$nrkontakt = stripslashes($_REQUEST['nrkontakt']); 
-		$nrkontakt = mysqli_real_escape_string($con,$nrkontakt); 
-        $vendi = stripslashes($_REQUEST['vendi']);
-		$vendi = mysqli_real_escape_string($con,$vendi);
-		
-	//Checking is user existing in the database or not
-        $query = "SELECT * FROM `qtgj` WHERE nrqendres='$nrqendres' and password='".md5($password)."'"; //function uses the RSA Data Security
-		$result = mysqli_query($con,$query) or die(mysql_error());
-		$rows = mysqli_num_rows($result); //return the number of rows present in the result set
-        if($rows==1){
-			$_SESSION['nrqendres'] = $nrqendres;
-			header("Location:qtgj.php"); // Redirect user to index.php
-            }else{
-				echo "<div class='form'><h3>nrpersonal/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
-				}
-    }else{
-?>
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Kyçu</span></div>
-        <form action="#" method="POST" name="myform" onsubmit="return validateform()">
+        <form action="<?= $_SERVER['PHP_SELF']?>" method="POST" onsubmit="return validateform()">
           <div class="row">
             <i class="fas fa-user"></i>
             <input
@@ -67,7 +41,7 @@
           </div>
           <div class="pass"><a href="#">Keni harruar fjalkalimin?</a></div>
           <div class="row button">
-            <input type="submit" name="submit" value="Kyçu" />
+          <input type="submit" value="login" name="loginBtn">
           </div>
           <div class="signup-link">
             Nuk keni llogari? <a href="register.php">Krijoni nje llogari</a>
@@ -76,7 +50,6 @@
             <a href="register2.php">Krijoni nje llogari si QTGJ</a>
           </div>
         </form>
-        <?php } ?>
       </div>
     </div>
 

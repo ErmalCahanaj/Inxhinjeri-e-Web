@@ -1,3 +1,8 @@
+<?php 
+include_once 'loginController.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,38 +20,16 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="login.css?v=<?php echo time(); ?>">
     <title>Login</title>
   </head>
 
   <body>
-  <?php
-	require('db.php');
-	session_start();
-    // If form submitted, insert values into the database.
-    if (isset($_POST['nrpersonal'])){
-		
-		$nrpersonal = stripslashes($_REQUEST['nrpersonal']); // removes backslashes
-		$nrpersonal = mysqli_real_escape_string($con,$nrpersonal); //escapes special characters in a string
-		$password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con,$password);
-		
-	//Checking is user existing in the database or not
-        $query = "SELECT * FROM `userss` WHERE nrpersonal='$nrpersonal' and password='".md5($password)."'"; //function uses the RSA Data Security
-		$result = mysqli_query($con,$query) or die(mysql_error());
-		$rows = mysqli_num_rows($result); //return the number of rows present in the result set
-        if($rows==1){
-			$_SESSION['nrpersonal'] = $nrpersonal;
-			header("Location: index.php"); // Redirect user to index.php
-            }else{
-				echo "<div class='form'><h3>nrpersonal/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
-				}
-    }else{
-?>
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Kyçu</span></div>
-        <form action="#" method="POST" name="myform" onsubmit="return validateform()">
+        <form action="<?= $_SERVER['PHP_SELF']?>" method="post" onsubmit="return validateform()">
+
           <div class="row">
             <i class="fas fa-user"></i>
             <input
@@ -59,20 +42,20 @@
             <i class="fas fa-lock"></i>
             <input type="password" name="password" placeholder="Fjalkalimi*" />
           </div>
+
           <div class="row button">
-            <input type="submit" value="Kyçu" />
+          <input type="submit" value="login" name="loginBtn">
           </div>
           <div class="signup-link">
             Nuk keni llogari? <a href="register.php">Krijoni nje llogari</a>
           </div>
           <div class="signup-link">
-            <a href="register2.php">Krijoni nje llogari si QTGJ</a>
+            <a href="register2.php">Krijoni nje llogari si QTGJ </a>
           </div>
           <div class="signup-link">
             <a href="login-qtgj.php">Kyçuni si QTGJ</a>
           </div>
         </form>
-        <?php } ?>
       </div>
     </div>
 
@@ -91,7 +74,7 @@
         } else if (password.length < 6) {
           alert("Passwordi duhet te jete me shume se 6 karkatere");
           return false;
-        } else alert("Mire se erdhet");
+        } 
       }
     </script>
   </body>
