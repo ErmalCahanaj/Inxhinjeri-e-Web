@@ -1,3 +1,8 @@
+<?php
+include_once 'registerControllerq.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +20,7 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="register.css?v=<?php echo time(); ?>">
     <title>Regjistrohu</title>
   </head>
 
@@ -23,33 +28,11 @@
     <div class="container">
       <div class="wrapper card2">
         <div class="title"><span>Regjistrohu si QTGJ</span></div>
-        <?php
-        require('db1.php');
-    if (isset($_REQUEST['name'])){
-		$name = stripslashes($_REQUEST['name']); 
-		$name = mysqli_real_escape_string($con,$name);
-        $nrqendres = stripslashes($_REQUEST['nrqendres']);
-		$nrqendres = mysqli_real_escape_string($con,$nrqendres );
-        $password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con,$password);
-        $nrkontakt = stripslashes($_REQUEST['nrkontakt']);
-		$nrkontakt = mysqli_real_escape_string($con,$nrkontakt);
-        $vendi = stripslashes($_REQUEST['vendi']);
-		$vendi = mysqli_real_escape_string($con,$vendi);
-        $trn_date = date("Y-m-d H:i:s");
-        $query = "INSERT into `qtgj` (name,nrqendres,password, nrkontakt, vendi,trn_date)
-         VALUES ('$name','$nrqendres','".md5($password)."', '$nrkontakt','$vendi', '$trn_date')";
-        $result = mysqli_query($con,$query);
-        if($result){
-          header("Location: login-qtgj.php");
-        }
-    }else{
-?>
-
-        <form action="#" method="POST" name="myform" onsubmit="return validateform()">
+        <form action="<?= $_SERVER['PHP_SELF']?>" method="post"
+        name="myform" onsubmit="return validateform()">
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Emri i qendrës*" name="name" />
+            <input type="text" placeholder="Emri i qendrës*" value="<?=$name?>" name="name" />
           </div>
 
           <div class="row">
@@ -59,19 +42,21 @@
               placeholder="Numri i qendrës*"
               minlength="9"
               maxlength="10"
+              value="<?=$nrqendres?>"
               name="nrqendres"
             />
           </div>
 
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Fjalkalimi*" name="password" />
+            <input type="password" placeholder="Fjalkalimi*" value="<?=$password?>" name="password" />
           </div>
 
           <div class="row">
             <i class="fas fa-lock"></i>
             <input
               type="number"
+              value="<?=$nrkontakt?>"
               placeholder="Numri i kontaktit*"
               name="nrkontakt"
             />
@@ -79,21 +64,20 @@
 
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input type="text" placeholder="Vendi*" name="vendi" />
+            <input type="text" placeholder="Vendi*"  value="<?=$vendi?>"name="vendi" />
           </div>
 
           <div class="row button">
-            <input type="submit" name="submit" value="Regjistrohu" />
+          <input type="submit" value="register" name="registerBtn">    
           </div>
 
           <div class="signup-link">
             Fushat me "<span style="color: red">*</span>" duhet te plotesohen
           </div>
           <div class="signup-link">
-            Keni llogari? <a href="login.html">Kyçuni ketu</a>
+            Keni llogari? <a href="login-qtgj.php">Kyçuni ketu</a>
           </div>
         </form>
-        <?php } ?>
       </div>
     </div>
 

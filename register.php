@@ -1,3 +1,7 @@
+<?php
+include_once 'registerController.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,58 +19,28 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="register.css?v=<?php echo time(); ?>">
     <title>Regjistrohu</title>
   </head>
 
   <body>
 
-  <?php
-	require('db.php');
-    // If form submitted, insert values into the database.
-    if (isset($_REQUEST['name'])){
-		$name = stripslashes($_REQUEST['name']); // removes backslashes
-		$name = mysqli_real_escape_string($con,$name); //escapes special characters in a string
-    $mbiemri = stripslashes($_REQUEST['mbiemri']);
-		$mbiemri = mysqli_real_escape_string($con,$mbiemri);
-    $nrpersonal = stripslashes($_REQUEST['nrpersonal']);
-		$nrpersonal = mysqli_real_escape_string($con,$nrpersonal);
-    $grupigjakut = stripslashes($_REQUEST['grupigjakut']);
-		$grupigjakut = mysqli_real_escape_string($con,$grupigjakut);
-    $rhd = stripslashes($_REQUEST['rhd']);
-		$rhd = mysqli_real_escape_string($con,$rhd);
-    $password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con,$password);
-    $nrkontakt = stripslashes($_REQUEST['nrkontakt']);
-		$nrkontakt = mysqli_real_escape_string($con,$nrkontakt);
-    $vendi = stripslashes($_REQUEST['vendi']);
-		$vendi = mysqli_real_escape_string($con,$vendi);
-    $dataa = stripslashes($_REQUEST['dataa']);
-		$dataa = mysqli_real_escape_string($con,$dataa);
 
-		$trn_date = date("Y-m-d H:i:s");
-        $query = "INSERT into `userss` (name, mbiemri, nrpersonal, grupigjakut, rhd, password, nrkontakt, vendi, dataa, trn_date) VALUES ('$name','$mbiemri','$nrpersonal','$grupigjakut','$rhd','".md5($password)."', '$nrkontakt','$vendi','$dataa', '$trn_date')";
-        $result = mysqli_query($con,$query);
-        if($result){
-          header("Location: login-qtgj.php");
-        }
-    }else{
-?>
 
 
     <div class="container">
       <div class="wrapper card1">
         <div class="title"><span>Regjistrohu</span></div>
 
-        <form method="POST" name="registration" >
+        <form action="<?= $_SERVER['PHP_SELF']?>" method="post" >
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Emri*" name="name" />
+            <input type="text" placeholder="Emri*" name="name" value="<?=$name?>" />
           </div>
 
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Mbiemri*" name="mbiemri" />
+            <input type="text" placeholder="Mbiemri*" name="mbiemri" value="<?=$mbiemri?>" />
           </div>
 
           <div class="row">
@@ -75,6 +49,7 @@
               type="number"
               placeholder="Numri personal*"
               name="nrpersonal"
+              value="<?=$nrpersonal?>"
               minlength="9"
               maxlength="10"
             />
@@ -85,6 +60,7 @@
             <select
               name="grupigjakut"
               id="grupigjakut"
+              value="<?=$grupigjakut?>"
               style="padding-left: 60px; color: gray"
               required
             >
@@ -100,6 +76,7 @@
             <i class="fas fa-user"></i>
             <select
               name="rhd"
+              value="<?=$rhd?>"
               id="rhd"
               style="padding-left: 60px; color: gray"
               required
@@ -114,7 +91,7 @@
 
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input type="password" name="password" placeholder="Fjalkalimi*" />
+            <input type="password" name="password" value="<?=$password?>" placeholder="Fjalkalimi*" />
           </div>
 
           <div class="row">
@@ -122,19 +99,21 @@
             <input
               type="number"
               name="nrkontakt"
+              value="<?=$nrkontakt?>"
               placeholder="Numri i kontaktit*"
             />
           </div>
 
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input type="text" placeholder="Vendi*" name="vendi" />
+            <input type="text" placeholder="Vendi*"  value="<?=$vendi?>" name="vendi" />
           </div>
 
           <div class="row">
             <i class="fas fa-lock"></i>
             <input
               type="date"
+              value="<?=$dataa?>"
               name="dataa"
               placeholder="Datëlindja*"
               min="1930-01-01"
@@ -145,17 +124,17 @@
           </div>
 
           <div class="row button">
-            <input type="submit" name="submit" value="Regjistrohu" />
-          </div>
+<input type="submit" value="register" name="registerBtn">    
+      </div>
 
           <div class="signup-link">
             Fushat me "<span style="color: red">*</span>" duhet te plotesohen
           </div>
           <div class="signup-link">
-            Keni llogari? <a href="login.html">Kyçuni ketu</a>
+            Keni llogari? <a href="login.php">Kyçuni ketu</a>
           </div>
         </form>
-        <?php } ?>
+
       </div>
     </div>
 
@@ -180,8 +159,9 @@
         } else if (mbiemri == null || mbiemri == "") {
           alert("Ju lutem plotesoni Mbiemrin");
           return false;
-        } else if (nrpersonal == null || nrpersonal == "") {
-          alert("Ju lutem plotesoni Numrin Personal");
+        } 
+          else if (nrpersonal.length != 10) {
+          alert("Numri personal ka 10 karaktere");
           return false;
         } else if (nrkontakt == null || nrkontakt == "") {
           alert("Ju lutem plotesoni Numrin e Kontaktit");
